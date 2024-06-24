@@ -1,4 +1,4 @@
-out/constancia.pdf: base/constancia-examen.pdf generar.py datos.py
+constancia.pdf: base/constancia-examen.pdf generar.py datos.py
 	python3 generar.py
 
 base/constancia-examen.pdf:
