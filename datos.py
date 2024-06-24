@@ -10,10 +10,12 @@ MATERIA2 = "la programación"
 AUTORIDADES = "Bletchley Park"
 
 # DD/MM/20AA del examen
-DDE = 31
-MME = 12
-AAE = 99
+## ojo que el mes no tiene que tener 0 al principio
+DDE = 24
+MME = 6
+AAE = 24
 # DD/MM/20AA de la constancia
-DDC = 31
-MMC = 12
-AAC = 99
+## ojo que el mes no tiene que tener 0 al principio
+DDC = 24
+MMC = 6
+AAC = 24
