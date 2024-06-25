@@ -23,6 +23,7 @@ MESES = [
 
 
 def get_datos_kv():
+    d = {}
     for k, v in datos.__dict__.items():
         if k != k.upper():
             continue
@@ -30,19 +31,39 @@ def get_datos_kv():
         if k.startswith("MM"):
             v = MESES[int(v) - 1]
 
-        yield k, v
+        d[k] = v
+    return d
 
 
 lines = []
 with open("template.xopp") as f:
     lines = f.readlines()
 
+remove_everything_else = False
+dkv = get_datos_kv()
 for i, line in enumerate(lines):
-    if not line.startswith("<text"):
+    remove = False
+    if dkv.get("SOLO_PRIMERA_MITAD") and "-- hr --" in line:
+        remove_everything_else = True
+
+    if not (line.startswith("<text") or ("-- final --" in line) or ("-- parcial --" in line)):
         continue
 
-    for k, v in get_datos_kv():
+    if ("-- final --" in line) and dkv.get("ES_PARCIAL"):
+        remove = True
+
+    if ("-- parcial --" in line) and dkv.get("ES_FINAL"):
+        remove = True
+
+    if remove_everything_else:
+        remove = True
+
+    if remove:
+        line = ""
+
+    for k, v in dkv.items():
         line = line.replace("K_" + k, f"{v}")
+
 
     lines[i] = line
 

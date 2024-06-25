@@ -1,3 +1,10 @@
+# completar solamente la primera constancia del pdf?
+SOLO_PRIMERA_MITAD = True
+
+# tipo de examen
+ES_PARCIAL = True
+ES_FINAL = False
+
 # nombre de alumno/a
 NOMBRE = "Alan Turing"
 
